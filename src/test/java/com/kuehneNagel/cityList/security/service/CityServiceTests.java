@@ -1,6 +1,5 @@
 package com.kuehneNagel.cityList.security.service;
 
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -18,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import com.kuehneNagel.cityList.models.City;
 import com.kuehneNagel.cityList.repository.CityRepository;
 import com.kuehneNagel.cityList.security.fixtures.DataFixtures;
-import com.kuehneNagel.cityList.service.CityService;
+import com.kuehneNagel.cityList.service.impl.CityServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class CityServiceTests {
@@ -27,7 +26,7 @@ public class CityServiceTests {
 	private CityRepository cityRepository;
 
 	@InjectMocks
-	private CityService cityService;
+	private CityServiceImpl cityService;
 
 	@Test
 	void Validate_GetAllCities_HappyScenario() {

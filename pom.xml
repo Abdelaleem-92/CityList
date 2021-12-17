@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.kuehneNagel</groupId>
 	<artifactId>cityList</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>cityList</name>
 	<description>City List project for Spring Boot</description>
 	<properties>

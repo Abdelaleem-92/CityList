@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kuehneNagel.cityList.models.City;
 import com.kuehneNagel.cityList.payload.CityPayload;
-import com.kuehneNagel.cityList.service.CityService;
+import com.kuehneNagel.cityList.service.ICityService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -27,7 +27,7 @@ import com.kuehneNagel.cityList.service.CityService;
 public class CityController {
 
 	@Autowired
-	CityService cityService;
+	ICityService cityService;
 
 	@GetMapping("/allCities")
 	public ResponseEntity<List<City>> allCities() {
@@ -41,7 +41,8 @@ public class CityController {
 
 	@PostMapping("/editCity/{name}")
 	@PreAuthorize("hasRole('ROLE_ALLOW_EDIT')")
-	public ResponseEntity<City> editCity(@NonNull @PathVariable String name, @Valid @NotNull @RequestBody CityPayload cityPayload) {
+	public ResponseEntity<City> editCity(@NonNull @PathVariable String name,
+			@Valid @NotNull @RequestBody CityPayload cityPayload) {
 		return cityService.editCityByName(name, cityPayload);
 	}
 }

@@ -1,4 +1,4 @@
-package com.kuehneNagel.cityList.service;
+package com.kuehneNagel.cityList.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,17 +11,20 @@ import org.springframework.stereotype.Service;
 import com.kuehneNagel.cityList.models.City;
 import com.kuehneNagel.cityList.payload.CityPayload;
 import com.kuehneNagel.cityList.repository.CityRepository;
+import com.kuehneNagel.cityList.service.ICityService;
 
 @Service
-public class CityService {
+public class CityServiceImpl implements ICityService{
 
 	@Autowired
 	CityRepository cityRepository;
 
+	@Override
 	public ResponseEntity<List<City>> getAllCities() {
 		return new ResponseEntity<>(cityRepository.findAll(), HttpStatus.OK);
 	}
 
+	@Override
 	public ResponseEntity<City> getCityByName(String name) {
 		Optional<City> cityOptional = cityRepository.findByName(name);
 		if (cityOptional.isPresent()) {
@@ -31,6 +34,7 @@ public class CityService {
 		}
 	}
 	
+	@Override
 	public ResponseEntity<City> editCityByName(String existingCityName, CityPayload cityPayload) {
 		Optional<City> existingCityOptional = cityRepository.findByName(existingCityName);
 		if (existingCityOptional.isPresent()) {
